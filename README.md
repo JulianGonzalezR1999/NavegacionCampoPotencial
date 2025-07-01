@@ -25,6 +25,7 @@ Modelo Cinemático Inverso
 
 ### Mapas
 
+Usando el algoritmo [Codigo_LidarScan_BuildMap.m](archivos_matlab/Codigo_LidarScan_BuildMap.m)
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/54d38593-0935-4a7b-bf25-1f71a3dd2b8f" alt="Mapa " width="500"/>
@@ -37,83 +38,34 @@ Modelo Cinemático Inverso
   <img src="https://github.com/user-attachments/assets/c37a3248-059b-4067-bcb6-c6f07a720a5c" alt="Mapa " width="500"/>
 </p>
 
-### Planeacion PRM
 
-Una vez con el mapa inflado utilizamos el algoritmo PRM para realizar la planeacion de la ruta asignada (Inicio Superior Izquieda -Salida Inferior Derecha). Para este algoritmo utilizamos la funcion "mobileRobotPRM" la cual establece dentro de un mapa una serie de nodos conectados y junto con la funcion "findpath" calcula una ruta óptima entre dos puntos usando el grafo generado por el planificador PRM (mobileRobotPRM). Los valores de los parametros usados se listan a continuacion:
+###  Gradiente del Campo Potencial
 
-* prm.NumNodes = 300
-* prm.ConnectionDistance = 0.2
-* StartLocation = [0, 1.2]
-* EndLocation = [1.2, 0]
 
-La ruta optima encontrada por el algoritmo segun los parametros se presenta en la siguiente tabla.
+| Fig 1 **Mapa Original** | Fig 2**Mapa Inflado** |
+|:-----------------:|:----------------:|
+| ![MapaEscala](https://github.com/user-attachments/assets/9c5e2f23-ceb0-45de-bcd2-8113b2d115c7) | ![Mapa Sigmoid](https://github.com/user-attachments/assets/f28557e3-9cc1-49fa-a524-00fb24ede813) |
 
-| Index |    X    |    Y    |
-|:-----:|:-------:|:-------:|
-|   1   | 0.0000  | 1.2000  |
-|   2   | 0.0368  | 1.2017  |
-|   3   | 0.2660  | 1.1570  |
-|   4   | 0.2986  | 1.1057  |
-|   5   | 0.4915  | 1.1414  |
-|   6   | 0.7007  | 1.0461  |
-|   7   | 0.7208  | 1.1061  |
-|   8   | 0.7930  | 1.1318  |
-|   9   | 0.8945  | 1.1203  |
-|  10   | 0.9111  | 0.9511  |
-|  11   | 0.9288  | 0.9027  |
-|  12   | 1.0564  | 0.8777  |
-|  13   | 1.2170  | 0.9440  |
-|  14   | 1.2037  | 0.8203  |
-|  15   | 1.2053  | 0.6428  |
-|  16   | 1.2240  | 0.3914  |
-|  17   | 1.1581  | 0.3726  |
-|  18   | 1.1279  | 0.3412  |
-|  19   | 1.1535  | 0.2361  |
-|  20   | 1.2158  | 0.0073  |
-|  21   | 1.2000  | 0.0000  |
+### Simulación en CoppeliaSim
 
-### Función de coste de PRM
-La funcion de costo que se utiliza para cada arista del roadmap es la distancia euclídea entre los dos nodos conectados. "path = findpath(prm, startLocation, endLocation);"
-Por defecto, `mobileRobotPRM` emplea la **distancia euclídea** como función de coste.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6e6eaf3d-70a7-4ce2-b102-103a9c7d7e38" alt="Mapa " width="500"/>
+</p>
 
-El planificador:
-* Construye un grafo cuyos vértices son las muestras en el espacio libre del mapa inflado.
-* Conecta cada par de nodos cuya separación sea menor o igual a ConnectionDistance.
-* Asigna a cada arista un peso igual a la distancia euclídea entre sus dos extremos.
-* Ejecuta Dijkstra (o un algoritmo equivalente de camino mínimo) sobre ese grafo para encontrar la ruta de coste mínimo.
 
-Finalmente la funcion de coste corresponde a: Coste(path) = Σ_{i=1 to N-1} √[ (x_{i+1} - x_i)^2 + (y_{i+1} - y_i)^2 ]
-Donde cada término es la distancia euclídea entre el nodo i y el nodo i+1.  
-A continuacion se presenta las graficas del algoritmo PRM y la ruta encontrada.
+
+https://github.com/user-attachments/assets/9f0277a1-e887-4189-a2eb-15a5bc735281
+
+
+
+
+
 
 | Fig 3 **Grafos algoritmo PRM y ruta solucion** |
 |:-----------------:|
 |![Figura3](https://github.com/user-attachments/assets/82926b42-8b55-4b25-ac42-32bc4fa68336)|
 
-### Planeacion PRM
 
-De igual forma se realizaron pruebas con el algoritmo RRT. Para crear este planificador se uso la libreria de Matlab *plannerRRT* en la cual se consideran los siguientes parametros;
-* planner.MaxIterations = 100000
-* planner.MaxConnectionDistance = 0.5
-
-A continuacion se presenta las graficas del algoritmo RRT y la ruta encontrada.
-| Fig 4 **Grafos algoritmo RRT y ruta solucion** |
-|:-----------------:|
-|![Figura4](https://github.com/user-attachments/assets/93a33efd-4ecc-4d60-ab58-d5bf5542da0b)|
-
-### Simulacion en CoppeliaSim
-
-Una vez realizadas los algoritmos de planeacion integramos el mapa del laberinto a CoppeliaSim. Como se puede ver en la siguiente Figura.
-
-| Fig 5 **Mapa del robot en CoppeliaSim ** |
-|:-----------------:|
-|![ROBOTCOPELIASIM](https://github.com/user-attachments/assets/19d366f5-53b1-4f0b-b317-54b1b292d00b)|
-
-### Simulación Matlab y CoppeliaSim
-
-Para la simulación se selecciona la ruta obtenida a travez del metodo PRM  y se utiliza el codigo  [CoppeliaMatlab.py](CoppeliaMatlab.m) y  el script en coppeliaSim [Mapa.ttt](Pruebagiro.ttt)
-
-https://github.com/user-attachments/assets/b9a6431f-b54f-4d1b-bedf-6477636e013f
 
 ### Conclusiones
 * Inflado de obstáculos y seguridad: Inflar el mapa en función del radio del robot (hábito imprescindibe) garantiza que las rutas generadas sean seguras, sin riesgo de colisión con las paredes.

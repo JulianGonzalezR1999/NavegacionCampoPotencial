@@ -90,18 +90,9 @@ Para la simulación en coppeliaSim se agregan cilindros correspondientes a los o
   <img src="https://github.com/user-attachments/assets/6e6eaf3d-70a7-4ce2-b102-103a9c7d7e38" alt="Mapa " width="500"/>
 </p>
 
-
+Finalmente el siguiente video hace la demostración del movimiento del robot para intentar seguir la trayectoria generada para una orientación de 45 grados 
 
 https://github.com/user-attachments/assets/9f0277a1-e887-4189-a2eb-15a5bc735281
-
-
-
-
-
-
-| Fig 3 **Grafos algoritmo PRM y ruta solucion** |
-|:-----------------:|
-|![Figura3](https://github.com/user-attachments/assets/82926b42-8b55-4b25-ac42-32bc4fa68336)|
 
 
 

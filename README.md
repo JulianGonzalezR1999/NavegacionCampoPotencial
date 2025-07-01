@@ -119,23 +119,39 @@ Posterior a esto se aplica el algoritmo arena2025.m para obtener el mapa de obst
 
 Usando la función sigmoidal transformamos este mapa en un campo potencial repulsivo, también se agrega una repulsión en los bordes pensada para que el robot conozca los límites de movimiento sobre el que puede avanzar, en la visualización de este mapa se usan colores para identificar las zonas de mayor repulsión de campo en Matlab.
 
-Campo potencial repulsivo
 
 ![image](https://github.com/user-attachments/assets/b266c3e7-8565-4700-a74e-5553cc34d0c2)
 
+
 A continuación, se crea el campo potencial atractivo de la meta y se suman ambos campos para obtener el campo de potencial total.
 
-Campo potencial Total
 
 ![image](https://github.com/user-attachments/assets/9c798889-94b6-4b78-949e-26fa5dbd5397)
 
+Este será el campo el cual el robot deberá utilizar para llegar a la meta. Luego de pruebas de simulación se logra llegar a las tres soluciones de salida, con los siguientes parámetros.
 
-30°
+![image](https://github.com/user-attachments/assets/dac7a8de-6c7b-48a8-a681-499e54a1e761)
+
+Estos valores fueron elegidos debido a varias características:
+•	Un valor inicial de Lambda = 15 generaba un campo de repulsión más fuerte  a medida que se acercaba el robot, generando que en la condición de 30° el robot quedara girando sin poder llegar a la meta.
+•	La distancia de repulsión se redujo para que el robot pudiera acercarse más a los obstáculos antes de ser desviado de su trayectoria.
+•	Se aumentó la intensidad del campo atractivo, inicialmente en un valor Alpha = 0,01 en condiciones que nuevamente quedaba girando el robot sin llegar a la meta.
+
+Con estas características se muestra a continuación los resultados obtenidos con los valores de ángulo inicial.
+
+Trayectoria a 30°
 
 ![image](https://github.com/user-attachments/assets/80227c30-0d2d-4a2c-99f0-57fe9fea4b9c)
 
+Trayectoria a 45°
 
+![image](https://github.com/user-attachments/assets/9a923662-e58b-4614-8412-aaccd94f619d)
 
+Trayectoria a 60°
+
+![image](https://github.com/user-attachments/assets/df4be1e2-109f-4eee-949b-d8f42775b333)
+
+Aunque no es muy visible la diferencia entre 30° y 45° esta se nota justamente al inicio, luego de esto el campo de repulsión de ambas toma la misma trayectoria, mientras que en la trayectoria a 60° si es visible la diferencia además de que en un punto queda girando el robot, esto conocido como un mínimo local, solucionado de manera que se le da un giro aleatorio para poder salir del mínimo local.
 
 
 

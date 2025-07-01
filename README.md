@@ -2,7 +2,6 @@
 
 ## 🪶Autores
 * Julian Andres Gonzalez Reina
-* Emily Angelica Villanueva Serna
 * Elvin Andres Corredor Torres
 
 ## ℹ️Navegacion por Campo Potencial (ROBOT ePuck)
@@ -97,6 +96,7 @@ https://github.com/user-attachments/assets/9f0277a1-e887-4189-a2eb-15a5bc735281
 
 
 ### Conclusiones
-* Inflado de obstáculos y seguridad: Inflar el mapa en función del radio del robot (hábito imprescindibe) garantiza que las rutas generadas sean seguras, sin riesgo de colisión con las paredes.
-* En PRM, NumNodes y ConnectionDistance regulan el equilibrio entre cobertura del espacio y coste del grafo.
-* En RRT, MaxIterations y MaxConnectionDistance influyen en la velocidad de convergencia y la complejidad de la ruta.
+* Una de las dificultades mas notorias para realizar esta navegación fue el hecho de tener que cuadrar parámetros a prueba y error para lograr que el robot lograra cumplir con su misón . Al inicio si la repulsión era muy grande el robot solo avanzaba unos pocos milimetros y quedaba en un minimo local donde dejaba de moverse asumiendo haber llegado al objetivo, por otra parte en caso de tener una atraccion muy grande la trayectoria pasaba por encima de los obstaculos. 
+* Durante la simulación en coppeliaSim a diferencia de el código en matlab, el robot hacia giros extraños como rebotando con los obstaculos por el efecto de repulsión, es una de las desventajas de utilizar este método de navegación,es que los parámetros son muy sensibles y pueden causar dinámicas no deseadas al momento de la implementación.
+* Aunque el concepto es sencillo de entender es posible que en algunos casos pueda existir la posibilidad de no poder llegar o encontrar la meta asi exista un camino disponible .
+* En ese caso para el robot epuck fue necesario colocar un párametro de atracción muy grande respecto al de repulsión ya que con nuestro algoritmo siempre se quedaba en minimos locales antes de llegar al objetivo , asumiendo que el problema estaba en los parámetros decidimos agrandar la atracción realizada por la meta para lograr cumplir con la misión 

@@ -99,16 +99,31 @@ Altura = 55 mm
 Se determinan las ecuaciones de cinemática directa del robot de acuerdo a las velocidades angulares del robot.
 
 
-v=\frac{R}{2}\left(\omega R+\omega L\right)
-\omega=\frac{R}{L}\left(\omega R-\omega L\right)
+![image-removebg-preview (1)](https://github.com/user-attachments/assets/8f17458c-2d36-4bdc-916a-7355bdaee6a8)
 
+Y para resolver la posición y orientación del robot, usamos el método de integración de Euler, el cual fue el siguiente 
 
+![image-removebg-preview (2)](https://github.com/user-attachments/assets/be92901e-9c28-4bb6-882c-c2cda68ec035)
+
+Siendo
+R: radio de las ruedas
+L: distancia entre ruedas
+ωR, ωL: velocidades angulares de la rueda derecha e izquierda
+x, y: posición del robot
+θ: orientación
+dt: paso de tiempo
+
+Posterior a esto se aplica el algoritmo arena2025.m para obtener el mapa de obstáculos como se ve a continuación.
 
 ![image](https://github.com/user-attachments/assets/35937b50-c8d1-415e-9ded-adbe7d0bf2fa)
+
+Usando la función sigmoidal transformamos este mapa en un campo potencial repulsivo, también se agrega una repulsión en los bordes pensada para que el robot conozca los límites de movimiento sobre el que puede avanzar, en la visualización de este mapa se usan colores para identificar las zonas de mayor repulsión de campo en Matlab.
 
 Campo potencial repulsivo
 
 ![image](https://github.com/user-attachments/assets/b266c3e7-8565-4700-a74e-5553cc34d0c2)
+
+A continuación, se crea el campo potencial atractivo de la meta y se suman ambos campos para obtener el campo de potencial total.
 
 Campo potencial Total
 

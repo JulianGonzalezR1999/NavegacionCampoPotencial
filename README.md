@@ -5,7 +5,7 @@
 * Elvin Andres Corredor Torres
 * Emily Angelica Villanueva Serna
 
-## ℹ️Navegacion por Campo Potencial (ROBOT ePuck)
+## ℹ️Navegacion por Campo Potencial (ROBOT e-puck)
 
 ### 🏁Objetivos
 * Ejecutar las etapas necesarias para la solución y simulación de una misión de robot con ruedas utilizando el método de navegación por campo potencial.
@@ -83,6 +83,47 @@ $$ \frac{1}{1+e^{-x}} $$
 | Fig 1 **Mapa Original** | Fig 2**Mapa Inflado** |
 |:-----------------:|:----------------:|
 | ![MapaEscala](https://github.com/user-attachments/assets/9c5e2f23-ceb0-45de-bcd2-8113b2d115c7) | ![Mapa Sigmoid](https://github.com/user-attachments/assets/f28557e3-9cc1-49fa-a524-00fb24ede813) |
+
+De igual manera se realiza una simulación del sistema, pero en este caso con cinemática directa.
+
+Para la resolución de esta tarea se buscaron las medidas del robot asignado para poder crear el mapa de obstáculos en Matlab, siendo los siguientes datos los correspondientes al robot e-puck.
+
+Diámetro de Ruedas = 4 mm
+
+Distancia entre Ruedas = 53 mm
+
+Diámetro = 70 mm
+
+Altura = 55 mm
+
+Se determinan las ecuaciones de cinemática directa del robot de acuerdo a las velocidades angulares del robot.
+
+
+v=\frac{R}{2}\left(\omega R+\omega L\right)
+\omega=\frac{R}{L}\left(\omega R-\omega L\right)
+
+
+
+![image](https://github.com/user-attachments/assets/35937b50-c8d1-415e-9ded-adbe7d0bf2fa)
+
+Campo potencial repulsivo
+
+![image](https://github.com/user-attachments/assets/b266c3e7-8565-4700-a74e-5553cc34d0c2)
+
+Campo potencial Total
+
+![image](https://github.com/user-attachments/assets/9c798889-94b6-4b78-949e-26fa5dbd5397)
+
+
+30°
+
+![image](https://github.com/user-attachments/assets/80227c30-0d2d-4a2c-99f0-57fe9fea4b9c)
+
+
+
+
+
+
 
 ### Simulación en CoppeliaSim
 Para la simulación en CoppeliaSim se agregan cilindros correspondientes a los obstáculos y se fijan con un force sensor, la ubicación y radio de los obstáculos están dados por el código [mapa.m](mapa.m), la demostración se encuentra en la siguiente imagen donde el robot tiene la siguiente pose [-0.36,-0.36,45]

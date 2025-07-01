@@ -25,7 +25,7 @@ Modelo Cinemático Inverso
 
 ### Mapas
 
-Usando el algoritmo [Codigo_LidarScan_BuildMap.m](archivos_matlab/Codigo_LidarScan_BuildMap.m)
+Usando el algoritmo para redimensionar los obstaculos suministrado en la guia del laboratorio [mapa.m](mapa.m) se multiplica el valor de K por 0.04 que seria el radio que abarca toda la zona del robot epuck incluyendo sus ruedas , dando como resultado la siguiente imagen .
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/54d38593-0935-4a7b-bf25-1f71a3dd2b8f" alt="Mapa " width="500"/>
@@ -33,13 +33,49 @@ Usando el algoritmo [Codigo_LidarScan_BuildMap.m](archivos_matlab/Codigo_LidarSc
 
 ### Navegación por Campo Potencial
 
+Para la navegación por campo potencial se tienen en cuenta las ecuaciones de repulsion y atraccion .
+
+Fuerza de atracción
+
+ $$U_{att}(q)= \frac{1}{2}\zeta \left\|q-q_f \right\|^2$$
+
+ $$F_{att}(q)= -\triangledown  U_{att}(q)$$
+
+Fuerza de repulsión 
+
+$$ \frac{1}{2}\eta \left ( \frac{1}{\rho (q)}-\frac{1}{Q^*} \right )^2 $$ 
+
+cuando 
+
+$$, \rho (q)\leq Q^*  $$
+
+$$ 0 , \rho (q)> Q^* $$
+
+$$F_{rep}(q)= -\triangledown  U_{rep}(q)$$
+
+Gradiente total 
+
+$$ F_{total}= F_{att} + \Sigma F_{rep} $$
+
+En la siguiente gráfica se muestran las trayectorias resultantes a partir de la suma de gradientes utilizando el codigo [Trayectorias.m](AlgoritmoTrayectoriasDiferentes.m)
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c37a3248-059b-4067-bcb6-c6f07a720a5c" alt="Mapa " width="500"/>
 </p>
 
+Se ajusta el algoritmo mencionado anteriormente para lograr que el robot cumpla su objetivo y realice la trayectoria hasta la meta
+
+|Parámetro|Valor|Descripción|
+|----|------|-----------|
+|Zeta|50|	Atracción a la meta|
+|eta|0.01|Repulsión de obstáculos|
+|dsStar|0.3|Umbral atracción|
+|Qstar|0.22|Alcance repulsión|
+
 
 ###  Gradiente del Campo Potencial
+
+
 
 
 | Fig 1 **Mapa Original** | Fig 2**Mapa Inflado** |

@@ -133,9 +133,9 @@ Este será el campo el cual el robot deberá utilizar para llegar a la meta. Lue
 ![image](https://github.com/user-attachments/assets/dac7a8de-6c7b-48a8-a681-499e54a1e761)
 
 Estos valores fueron elegidos debido a varias características:
-•	Un valor inicial de Lambda = 15 generaba un campo de repulsión más fuerte  a medida que se acercaba el robot, generando que en la condición de 30° el robot quedara girando sin poder llegar a la meta.
-•	La distancia de repulsión se redujo para que el robot pudiera acercarse más a los obstáculos antes de ser desviado de su trayectoria.
-•	Se aumentó la intensidad del campo atractivo, inicialmente en un valor Alpha = 0,01 en condiciones que nuevamente quedaba girando el robot sin llegar a la meta.
+*Un valor inicial de Lambda = 15 generaba un campo de repulsión más fuerte  a medida que se acercaba el robot, generando que en la condición de 30° el robot quedara girando sin poder llegar a la meta.
+*La distancia de repulsión se redujo para que el robot pudiera acercarse más a los obstáculos antes de ser desviado de su trayectoria.
+*Se aumentó la intensidad del campo atractivo, inicialmente en un valor Alpha = 0,01 en condiciones que nuevamente quedaba girando el robot sin llegar a la meta.
 
 Con estas características se muestra a continuación los resultados obtenidos con los valores de ángulo inicial.
 

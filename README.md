@@ -75,15 +75,17 @@ Se ajusta el algoritmo mencionado anteriormente para lograr que el robot cumpla 
 
 ###  Gradiente del Campo Potencial
 
+Las siguientes imagenes estan elaborados con el código [Campo Potencial.m](CampoPotencialGrafica.m) y [Gradiente.m](CampoPotencial.m) , la imágen del lado izquierdo es la representación en escala logarítimica de la atracción y repulsión que ejerce la meta y los obstaculos respectivamente , mientras que la imágen de la derecha intenta mostrar los vectores de repulsión y atracción usando la función sigmoidal 
+Función sigmoidal
 
-
+$$ \frac{1}{1+e^{-x}} $$
 
 | Fig 1 **Mapa Original** | Fig 2**Mapa Inflado** |
 |:-----------------:|:----------------:|
 | ![MapaEscala](https://github.com/user-attachments/assets/9c5e2f23-ceb0-45de-bcd2-8113b2d115c7) | ![Mapa Sigmoid](https://github.com/user-attachments/assets/f28557e3-9cc1-49fa-a524-00fb24ede813) |
 
 ### Simulación en CoppeliaSim
-
+Para la simulación en coppeliaSim se agregan cilindros correspondientes a los obstaculos y se fijan con un force sensor , la ubicación y radio de los obstaculos estan dados por el código [mapa.m](mapa.m) , la demostración se encuentra en la siguiente imágen donde el robot tiene la sigiente pose [-0.36,-0.36,45]
 <p align="center">
   <img src="https://github.com/user-attachments/assets/6e6eaf3d-70a7-4ce2-b102-103a9c7d7e38" alt="Mapa " width="500"/>
 </p>
